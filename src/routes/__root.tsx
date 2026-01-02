@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 import {
   HeadContent,
-  Link,
   Scripts,
   createRootRoute,
 } from '@tanstack/react-router'
@@ -23,38 +22,19 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       ...seo({
-        title:
-          'TanStack Start | Type-Safe, Client-First, Full-Stack React Framework',
-        description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
+        title: 'Spec-Aware Proxy',
+        description:
+          'Spec-aware API relay that runs at the edge. No accounts, no storage.',
       }),
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
       {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/apple-touch-icon.png',
-      },
-      {
         rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/favicon-32x32.png',
+        type: 'image/svg+xml',
+        href: '/favicon.svg',
       },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/favicon-16x16.png',
-      },
-      { rel: 'manifest', href: '/site.webmanifest', color: '#fffff' },
-      { rel: 'icon', href: '/favicon.ico' },
-    ],
-    scripts: [
-      {
-        src: '/customScript.js',
-        type: 'text/javascript',
-      },
+      { rel: 'manifest', href: '/site.webmanifest' },
     ],
   }),
   errorComponent: DefaultCatchBoundary,
@@ -69,61 +49,18 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="p-2 flex gap-2 text-lg">
-          <Link
-            to="/"
-            activeProps={{
-              className: 'font-bold',
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>{' '}
-          <Link
-            to="/posts"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Posts
-          </Link>{' '}
-          <Link
-            to="/users"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Users
-          </Link>{' '}
-          <Link
-            to="/route-a"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Pathless Layout
-          </Link>{' '}
-          <Link
-            to="/deferred"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            Deferred
-          </Link>{' '}
-          <Link
-            // @ts-expect-error
-            to="/this-route-does-not-exist"
-            activeProps={{
-              className: 'font-bold',
-            }}
-          >
-            This Route Does Not Exist
-          </Link>
-        </div>
-        <hr />
+        <header className="border-b bg-white/70 backdrop-blur dark:bg-gray-950/40">
+          <div className="mx-auto flex max-w-5xl flex-col gap-1 px-4 py-3">
+            <div className="text-sm font-semibold">Spec-Aware Proxy</div>
+            <div className="text-xs text-gray-600 dark:text-gray-300">
+              Runs requests through a Worker relay. No auth, no persistence.
+            </div>
+          </div>
+        </header>
         {children}
-        <TanStackRouterDevtools position="bottom-right" />
+        {import.meta.env.DEV ? (
+          <TanStackRouterDevtools position="bottom-right" />
+        ) : null}
         <Scripts />
       </body>
     </html>

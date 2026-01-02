@@ -6,27 +6,34 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && tsc --noEmit",
-    "preview": "vite preview",
+    "preview": "npm run build && vite preview",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types",
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@cloudflare/vite-plugin": "^1.17.1",
     "@tanstack/react-router": "^1.144.0",
     "@tanstack/react-router-devtools": "^1.144.0",
     "@tanstack/react-start": "^1.145.3",
+    "pako": "^2.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^2.6.0",
+    "yaml": "^2.8.2",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^22.5.4",
+    "@types/pako": "^2.0.4",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.6.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.54.0"
   }
 }

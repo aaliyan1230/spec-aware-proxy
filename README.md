@@ -1,36 +1,34 @@
-# TanStack Start - Basic Example
+# Spec-Aware Proxy
 
-This is the basic TanStack Start example, demonstrating the fundamentals of building applications with TanStack Router and TanStack Start.
+A zero-setup, disposable API request builder that relays requests through a Cloudflare Worker.
 
-- [TanStack Router Docs](https://tanstack.com/router)
+Core properties:
+- No auth, no database, no cookies
+- State lives in the URL
+- Optional OpenAPI spec URL for a spec-aware request form
 
-It's deployed automagically with Netlify!
-
-- [Netlify](https://netlify.com/)
-
-## Start a new project based on this example
-
-To start a new project based on this example, run:
+## Local dev
 
 ```sh
-npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic
+npm install
+npm run dev
 ```
 
-## Getting Started
+## Deploy to Cloudflare Workers
 
-From your terminal:
+One time:
 
 ```sh
-pnpm install
-pnpm dev
+npx wrangler login
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Build
-
-To build the app for production:
+Deploy:
 
 ```sh
-pnpm build
+npm run deploy
 ```
+
+## Notes
+
+- The relay endpoint blocks localhost and private IP ranges.
+- Tokens you paste are not stored, they are only forwarded.
